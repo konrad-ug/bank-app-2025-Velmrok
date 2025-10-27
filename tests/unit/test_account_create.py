@@ -1,4 +1,4 @@
-from src.account import Account
+from account import Account
 
 
 class TestAccount:
