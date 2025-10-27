@@ -1,5 +1,7 @@
-class Account:
+from base_account import BaseAccount
+class Account(BaseAccount):
     def __init__(self, first_name, last_name, pesel, promo_code=None):
+        super().__init__()
         self.first_name = first_name
         self.last_name = last_name
         if len(str(pesel)) == 11:
@@ -23,11 +25,3 @@ class Account:
         else:
             birth_year += 2000
         return birth_year
-    def transfer(self, receiver_account, amount):
-        if(amount <= 0):
-            return
-        if(self == receiver_account):
-            return
-        if(self.balance >= amount):
-            self.balance -= amount
-            receiver_account.balance += amount
