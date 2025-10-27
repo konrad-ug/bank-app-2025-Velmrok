@@ -4,7 +4,7 @@ class Account(BaseAccount):
         super().__init__()
         self.first_name = first_name
         self.last_name = last_name
-        if len(str(pesel)) == 11:
+        if len(str(pesel))== 11 and str(pesel).isdigit():
             self.pesel = pesel
         else:
             self.pesel = "Invalid"
@@ -12,6 +12,7 @@ class Account(BaseAccount):
         if(promo_code is not None
             and len(promo_code) == 8
             and promo_code.startswith("PROM_" )
+            and self.pesel != "Invalid"
             and self.calculate_birth_year() > 1960):
             self.balance = 50.0
         else:
@@ -25,3 +26,5 @@ class Account(BaseAccount):
         else:
             birth_year += 2000
         return birth_year
+    def express_transfer(self, receiver_account, amount):
+        super().express_transfer(receiver_account, amount, 1)

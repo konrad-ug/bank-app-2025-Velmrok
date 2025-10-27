@@ -38,3 +38,4 @@ class TestAccountTransfer:
         sender.transfer(receiver, 0.0)
         assert sender.balance == 100.0
         assert receiver.balance == 0.0
+    

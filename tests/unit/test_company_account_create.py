@@ -10,3 +10,7 @@ class TestCompanyAccount:
         account = CompanyAccount("Test Company", "12345")
         assert account.nip == "Invalid"
         assert account.validate_nip() == False
+    def test_invalid_nip_non_digit(self):
+        account = CompanyAccount("Test Company", "12345ABCDE")
+        assert account.nip == "Invalid"
+        assert account.validate_nip() == False

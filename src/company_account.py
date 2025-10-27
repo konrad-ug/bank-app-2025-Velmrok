@@ -11,4 +11,6 @@ class CompanyAccount(BaseAccount):
             self.nip = "Invalid"
             return False
         return True
+    def express_transfer(self, receiver_account, amount):
+        super().express_transfer(receiver_account, amount, 5)
     
