@@ -23,3 +23,11 @@ class Account:
         else:
             birth_year += 2000
         return birth_year
+    def transfer(self, receiver_account, amount):
+        if(amount <= 0):
+            return
+        if(self == receiver_account):
+            return
+        if(self.balance >= amount):
+            self.balance -= amount
+            receiver_account.balance += amount
