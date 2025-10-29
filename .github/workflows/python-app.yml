@@ -5,7 +5,7 @@ name: Units Tests
 
 on:
   push:
-    branches: [ "main" , "lab03"]
+    branches: [ "main"]
   pull_request:
     branches: [ "main" ]
 
@@ -37,4 +37,5 @@ jobs:
     - name: Test with pytest
       run: |
         python3 -m coverage run --source=src -m pytest
+        python3 -m coverage report
         python3 -m coverage report --fail-under=100
