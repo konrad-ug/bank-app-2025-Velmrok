@@ -1,7 +1,5 @@
 from base_account import BaseAccount
 class Account(BaseAccount):
-    def empty():
-        return None
     def __init__(self, first_name, last_name, pesel, promo_code=None):
         super().__init__()
         self.first_name = first_name
