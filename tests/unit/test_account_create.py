@@ -11,7 +11,9 @@ class TestAccount:
     def test_invalid_pesel_too_short(self):
         account = Account("Anna", "Nowak", "12345")
         assert account.pesel == "Invalid"
-
+    def test_invalid_pesel_non_digit(self):
+        account = Account("Jan", "Kowalski", "12345ABCDE1")
+        assert account.pesel == "Invalid"
     def test_invalid_pesel_too_long(self):
         account = Account("Piotr", "Zielinski", "1234567890123")
         assert account.pesel == "Invalid"
