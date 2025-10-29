@@ -1,7 +1,7 @@
 from company_account import CompanyAccount
 
 class TestCompanyAccount:
-    def test_create_company_account(self):
+    def test_valid_create_company_account(self):
         account = CompanyAccount("Test Company", "1234567890")
         assert account.company_name == "Test Company"
         assert account.nip == "1234567890"
