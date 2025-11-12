@@ -28,3 +28,14 @@ class Account(BaseAccount):
         return birth_year
     def express_transfer(self, receiver_account, amount):
         super().express_transfer(receiver_account, amount, 1)
+    def submit_for_loan(self,bank, amount):
+        history = self.history
+        # Loan is accepted
+        if ((len(history) >= 3 and all(x>0 for x in history[-3:]) )
+        or (len(history) >=5 and sum(history[-5:]) > amount )):
+            bank.transfer(self,amount)
+            return True
+        else:
+            return False
+       
+       
