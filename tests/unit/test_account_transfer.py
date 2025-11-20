@@ -1,10 +1,10 @@
 import pytest
-from account import Account 
+from personal_account import PersonalAccount 
 
 @pytest.fixture
 def accounts():
-    sender = Account("Alice", "Smith", "12345678901")
-    receiver = Account("Bob", "Johnson", "10987654321")
+    sender = PersonalAccount("Alice", "Smith", "12345678901")
+    receiver = PersonalAccount("Bob", "Johnson", "10987654321")
     sender.balance = 100.0
     receiver.balance = 0.0
     return sender, receiver

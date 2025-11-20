@@ -1,5 +1,5 @@
 from base_account import BaseAccount
-class Account(BaseAccount):
+class PersonalAccount(BaseAccount):
     def __init__(self, first_name, last_name, pesel, promo_code=None):
         super().__init__()
         self.first_name = first_name
@@ -23,17 +23,19 @@ class Account(BaseAccount):
         else:
             return "Invalid"
     def execute_promo_code(self,promo_code):
+        birth_year = self.calculate_birth_year()
         if(promo_code is not None
             and len(promo_code) == 8
             and promo_code.startswith("PROM_" )
-            and self.calculate_birth_year() is not None
-            and self.calculate_birth_year() > 1960):
+            and birth_year is not None
+            and birth_year > 1960):
             self.balance = 50.0
         else:
             self.promo_code = None
             self.balance = 0.0
     def express_transfer(self, receiver_account, amount):
         super().express_transfer(receiver_account, amount, 1)
+
     def has_positive_recent_history(self):
         return len(self.history) >= 3 and all(x > 0 for x in self.history[-3:])
 
