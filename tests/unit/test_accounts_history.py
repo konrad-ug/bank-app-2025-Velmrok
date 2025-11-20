@@ -1,12 +1,12 @@
 import pytest
-from account import Account
+from personal_account import PersonalAccount
 from company_account import CompanyAccount
 
 class BaseAccountHistoryTests:
     @pytest.fixture
     def accounts(self):
-        sender = Account("Alice", "Smith", "12345678901")
-        receiver = Account("Bob", "Johnson", "10987654321")
+        sender = PersonalAccount("Alice", "Smith", "12345678901")
+        receiver = PersonalAccount("Bob", "Johnson", "10987654321")
         sender.balance = 500.0
         sender.history = []
         receiver.balance = 0.0
