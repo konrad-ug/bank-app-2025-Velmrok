@@ -1,14 +1,15 @@
 import pytest
 from personal_account import PersonalAccount
 
-@pytest.fixture
-def accounts():
-    sender = PersonalAccount("John", "Doe", "12345678901")
-    receiver = PersonalAccount("Jane", "Doe", "10987654321")
-    receiver.balance = 0.0
-    return sender, receiver
+
 
 class TestAccountExpressTransfer:
+    @pytest.fixture
+    def accounts(self):
+        sender = PersonalAccount("John", "Doe", "12345678901")
+        receiver = PersonalAccount("Jane", "Doe", "10987654321")
+        receiver.balance = 0.0
+        return sender, receiver
     @pytest.mark.parametrize(
     "amount, initial_balance, should_succeed",
     [

@@ -3,13 +3,7 @@ import pytest
 
 
 class TestCompanyAccountLoan:
-    @pytest.fixture()
-    def bank(self):
-        b = CompanyAccount("Bank", "00000000000")
-        b.balance = 10000.0
-        b.history = []
-        return b
-
+ 
     def create_account(self, history,balance):
         account = CompanyAccount("Loan", "85010112345")
         account.history = history

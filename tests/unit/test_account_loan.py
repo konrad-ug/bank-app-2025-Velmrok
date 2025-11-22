@@ -2,12 +2,6 @@ from personal_account import PersonalAccount
 import pytest
 
 class TestAccountLoan:
-    @pytest.fixture
-    def bank(self):
-        b = PersonalAccount("Bank", "Service", "00000000000")
-        b.balance = 10000.0
-        b.history = []
-        return b
 
     def create_account(self, history):
         account = PersonalAccount("Loan", "Tester", "85010112345")
@@ -34,6 +28,19 @@ class TestAccountLoan:
             assert result is False
             assert account.balance == 0.0
             assert bank.history == []
-
+    @pytest.mark.parametrize("history,should_succeed", [([100, 200, 150], True), ([100, -50, 200], False)])
+    def test_recent_history(self, history, should_succeed):
+        account = PersonalAccount("Test", "User", "80010112345")
+        account.history = history
+        assert account.has_positive_recent_history() is should_succeed
+  
+    @pytest.mark.parametrize("history,amount,should_succeed", [
+        ([100, 200, 200, 300, 400], 1000, True),
+        ([100, 100, 100, 100, 100], 600, False)
+    ])
+    def test_five_payments_exceeding_amount(self, history, amount, should_succeed):
+        account = PersonalAccount("Test", "User", "80010112345")
+        account.history = history
+        assert account.has_five_payments_exceeding_amount(amount) is should_succeed
 
 
