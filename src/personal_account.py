@@ -7,6 +7,7 @@ class PersonalAccount(BaseAccount):
         self.pesel = self.check_pesel_validity(pesel)
         self.promo_code = promo_code
         self.execute_promo_code(promo_code)
+        
     def calculate_birth_year(self):
         if self.pesel == "Invalid":
             return None
