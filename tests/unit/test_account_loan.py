@@ -9,7 +9,7 @@ class TestAccountLoan:
         b.history = []
         return b
 
-    def create_account_with_history(self, history):
+    def create_account(self, history):
         account = PersonalAccount("Loan", "Tester", "85010112345")
         account.history = history
         account.balance = 0.0
@@ -24,7 +24,7 @@ class TestAccountLoan:
         ([], 100, False)
     ])
     def test_loan(self, bank, history, amount,should_succeed):
-        account = self.create_account_with_history(history)
+        account = self.create_account(history)
         result = account.submit_for_loan(bank, amount)
         if should_succeed:
             assert result is True
