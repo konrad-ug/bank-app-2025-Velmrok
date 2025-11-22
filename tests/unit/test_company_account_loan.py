@@ -16,11 +16,11 @@ class TestCompanyAccountLoan:
         account.balance = balance
         return account
     @pytest.mark.parametrize("history, balance, amount, should_succeed", [
-        ([1775], 700.0, 300,True),
-        ([1775], 600.0, 300,True),  
-        ([-1775], 2000.0, 600, False), 
+        ([-1775], 700.0, 300,True),
+        ([-1775], 600.0, 300,True),  
+        ([1775], 2000.0, 600, False), 
         ([177], 400.0, 200, False),
-        ([1775], 100, 100, False),
+        ([-1775], 100, 100, False),
         ([], 1000, 100, False)
         
     ])
