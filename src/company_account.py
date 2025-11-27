@@ -1,4 +1,4 @@
-from base_account import BaseAccount
+from src.base_account import BaseAccount
 class CompanyAccount(BaseAccount):
     def __init__(self, company_name, nip):
         super().__init__()

@@ -1,5 +1,5 @@
 import pytest
-from company_account import CompanyAccount
+from src.company_account import CompanyAccount
 
 @pytest.fixture
 def company_accounts():

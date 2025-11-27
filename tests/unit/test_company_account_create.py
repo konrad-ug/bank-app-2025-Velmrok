@@ -1,4 +1,4 @@
-from company_account import CompanyAccount
+from src.company_account import CompanyAccount
 
 class TestCompanyAccount:
     def test_valid_create_company_account(self):
