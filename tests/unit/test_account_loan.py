@@ -1,4 +1,4 @@
-from personal_account import PersonalAccount
+from src.personal_account import PersonalAccount
 import pytest
 
 class TestAccountLoan:

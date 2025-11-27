@@ -1,7 +1,6 @@
-
 import pytest
+from src.personal_account import PersonalAccount
 
-from personal_account import PersonalAccount
 class TestAccountPromoCode:
     @pytest.mark.parametrize("pesel, promo_code, expected_balance", [
     ("80010112345", "PROM_O10", 50.0),      

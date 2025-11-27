@@ -1,6 +1,6 @@
 import pytest
-from personal_account import PersonalAccount
-from company_account import CompanyAccount
+from src.personal_account import PersonalAccount
+from src.company_account import CompanyAccount
 
 class BaseAccountHistoryTests:
     @pytest.fixture

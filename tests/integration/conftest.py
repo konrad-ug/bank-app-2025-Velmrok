@@ -1,6 +1,6 @@
 import pytest
 import requests
-################################### AccountRegistry
+
 @pytest.fixture()
 def request_data():
     return {
@@ -15,4 +15,4 @@ def API_base_url():
 @pytest.fixture(autouse=True)
 def clear_registry_after_test(API_base_url):
     yield
-    requests.post(f"{API_base_url}/accounts/clear") 
+    requests.post(f"{API_base_url}/accounts/clear")
