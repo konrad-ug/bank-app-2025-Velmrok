@@ -14,7 +14,7 @@ def populated_registry():
     registry.add_account(account1)
     registry.add_account(account2)
     return registry
-################################################################
+#################################### Bank
 @pytest.fixture
 def bank():
     b = PersonalAccount("Bank", "Service", "00000000000")

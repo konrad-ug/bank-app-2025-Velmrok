@@ -21,3 +21,8 @@ class AccountRegistry:
         return self.accounts.copy()
     def get_count(self):
         return len(self.accounts)
+    def remove_account(self, account):
+        if account in self.accounts:
+            self.accounts.remove(account)
+
+    
