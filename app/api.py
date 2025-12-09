@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+#flask --app app/api.py --debug run
 from flask import Flask, request, jsonify
 from src.account_registry import AccountRegistry
 from src.personal_account import PersonalAccount
@@ -15,6 +19,8 @@ def create_app():
             data["pesel"],
             data.get("promocode")
         )
+        if(app.registry.find_account_by_pesel(account.pesel) is not None):
+            return jsonify({"error": "Account with this PESEL already exists"}), 409
         app.registry.add_account(account)
         return jsonify({"message": "Account created"}), 201
 
