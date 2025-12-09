@@ -7,7 +7,7 @@ def request_data():
         "name": "John",
         "surname": "Doe",
         "pesel": "12345678901",
-        "promocode": "PROM_O10"
+        "promocode": ""
     }
 @pytest.fixture()
 def API_base_url():
