@@ -83,15 +83,25 @@ def transfer(pesel):
     amount = data.get("amount")
     type = data.get("type")
     if type not in ["incoming", "outgoing","express"]:
-        return jsonify({"error": "Invalid transfer type"}),422 
+        return jsonify({"error": "Invalid transfer type", "balance": account.balance}),400
     if amount is None or not isinstance(amount, (int, float)):
-        return jsonify({"error": "Invalid amount"}), 422
+        return jsonify({"error": "Invalid amount", "balance": account.balance}), 422
     if type == "outgoing" :
-        account.withdraw(amount)
+        try:
+            account.withdraw(amount)
+        except ValueError as e:
+            return jsonify({"error": str(e), "balance": account.balance}), 422
     elif type == "incoming":
-        account.deposit(amount) 
+        try:
+            account.deposit(amount)
+        except ValueError as e:
+            return jsonify({"error": str(e), "balance": account.balance}), 422
     elif type == "express": 
-        account.express_withdraw(amount, 1)
+        try:
+            account.express_withdraw(amount)
+        except ValueError as e:
+            return jsonify({"error": str(e), "balance": account.balance}), 422
+    return jsonify({"message": "Transfer successful", "balance": account.balance}), 200
 
 # ENDPOINT FOR TEST CLEANUP ##############################
 @accounts_bp.route("clear", methods=['POST'])
