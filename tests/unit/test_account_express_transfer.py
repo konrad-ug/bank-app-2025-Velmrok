@@ -37,3 +37,21 @@ class TestAccountExpressTransfer:
         sender.balance = 100.0
         sender.express_transfer(sender, 50.0)
         assert sender.balance == 100.0
+    @pytest.mark.parametrize(
+    "amount, initial_balance, should_succeed",
+    [
+        (50.0, 100.0, True),
+        (50.0, 50.0, True),
+        (51.0, 50.0, False),
+        (-10.0, 100.0, False),
+        (0.0, 100.0, False),
+    ]
+    )
+    def test_express_withdraw(self, accounts, amount, initial_balance, should_succeed):
+        account, _ = accounts
+        account.balance = initial_balance
+        account.express_withdraw(amount)
+        if should_succeed:
+            assert account.balance == initial_balance - amount - 1.0
+        else:
+            assert account.balance == initial_balance
