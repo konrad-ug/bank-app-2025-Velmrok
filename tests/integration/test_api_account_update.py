@@ -27,3 +27,4 @@ class TestAPIAccountUpdate:
         data = get_response.json()
         assert data["name"] == update_data["name"] if "name" in update_data else request_data["name"]
         assert data["surname"] == update_data["surname"] if "surname" in update_data else request_data["surname"]
+        
