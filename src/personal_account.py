@@ -36,7 +36,8 @@ class PersonalAccount(BaseAccount):
             self.balance = 0.0
     def express_transfer(self, receiver_account, amount):
         super().express_transfer(receiver_account, amount, 1)
-
+    def express_withdraw(self, amount,):
+        super().express_withdraw(amount, 1)
     def has_positive_recent_history(self):
         return len(self.history) >= 3 and all(x > 0 for x in self.history[-3:])
 
