@@ -32,4 +32,25 @@ class TestAccountTransfer:
         sender, _ = accounts
         sender.transfer(sender, 50.0)
         assert sender.balance == 100.0
-
+    @pytest.mark.parametrize("withdraw_amount,should_succeed",
+            [(50.0, True),{100,True}, (0.0, False), (-10.0, False), (150.0, False)])
+    def test_withdraw(self, accounts, withdraw_amount, should_succeed):
+        account, _ = accounts
+        if should_succeed:
+            account.withdraw(withdraw_amount)
+            assert account.balance == 100.0 - withdraw_amount
+        else:
+            with pytest.raises(ValueError):
+                account.withdraw(withdraw_amount)
+            assert account.balance == 100.0
+    @pytest.mark.parametrize("deposit_amount,should_succeed",
+             [(50.0, True), (-1, False), (0.01, True), (0.0, False)])
+    def test_deposit(self, accounts, deposit_amount, should_succeed):
+        account, _ = accounts
+        if should_succeed:
+            account.deposit(deposit_amount)
+            assert account.balance == 100.0 + deposit_amount
+        else:
+            with pytest.raises(ValueError):
+                account.deposit(deposit_amount)
+            assert account.balance == 100.0
