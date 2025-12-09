@@ -24,14 +24,20 @@ class BaseAccount:
         if amount > 0:
             self.balance += amount
             self.history.append(amount)
+        else:
+            raise ValueError("Deposit amount must be positive")
     def withdraw(self, amount):
         if 0 < amount <= self.balance:
             self.balance -= amount
             self.history.append(-amount)
+        else:
+            raise ValueError("Invalid withdraw amount")
     def express_withdraw(self, amount, fee):
         total_amount = amount + fee
         if 0 < amount <= self.balance:
             self.balance -= total_amount
             self.history.append(-amount)
             self.history.append(-fee)
+        else:
+            raise ValueError("Invalid express withdraw amount")
     
