@@ -50,8 +50,11 @@ class TestAccountExpressTransfer:
     def test_express_withdraw(self, accounts, amount, initial_balance, should_succeed):
         account, _ = accounts
         account.balance = initial_balance
-        account.express_withdraw(amount)
+        
         if should_succeed:
+            account.express_withdraw(amount)
             assert account.balance == initial_balance - amount - 1.0
         else:
+            with pytest.raises(ValueError):
+                account.express_withdraw(amount)
             assert account.balance == initial_balance
