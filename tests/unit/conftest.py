@@ -1,3 +1,4 @@
+from unittest.mock import patch
 from src.account_registry import AccountRegistry
 from src.personal_account import PersonalAccount
 import pytest
@@ -21,3 +22,10 @@ def bank():
     b.balance = 10000.0
     b.history = []
     return b
+################################ Mock API Requests for CompanyAccount
+@pytest.fixture(autouse=True)
+def mock_api_requests():
+    with patch('src.company_account.requests.get') as mock_get:
+        mock_get.return_value.status_code = 200
+        mock_get.return_value.json.return_value = {'statusVat': 'Czynny'}
+        yield mock_get
