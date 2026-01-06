@@ -1,3 +1,5 @@
+import src.smtp.smptp as smtp
+from datetime import date
 class BaseAccount:
     def __init__(self, saldo=0.0):
         self.balance = saldo
@@ -40,4 +42,9 @@ class BaseAccount:
             self.history.append(-fee)
         else:
             raise ValueError("Invalid express withdraw amount")
-    
+    def send_history_via_email(self, email_address):
+        current_date = date.today().isoformat()
+        subject = f"Account Transfer History {current_date}"
+        account_type = self.__class__.__name__.replace("Account", " account")
+        text = f"{account_type} history: {self.history}"
+        return smtp.SMTPClient.send(subject, text, email_address)
