@@ -40,3 +40,13 @@ def test_validate_nip_existance_returns_false_on_invalid_nip():
 
     result = account.validate_nip_existance()
     assert result is False
+def test_validate_nip_existance_returns_false_on_data_none():
+    nip = "1234567890"
+    account = CompanyAccount("No Data", nip)
+
+    with patch('src.company_account.requests.get') as mock_get:
+        mock_get.return_value.status_code = 200
+        mock_get.return_value.json.return_value = None
+
+        result = account.validate_nip_existance()
+        assert result is False
