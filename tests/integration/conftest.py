@@ -11,7 +11,7 @@ def request_data():
     }
 @pytest.fixture()
 def API_base_url():
-    return "http://localhost:5000/api"
+    return "http://127.0.0.1:5000/api"
 @pytest.fixture(autouse=True)
 def clear_registry_before_test(API_base_url):
     requests.post(f"{API_base_url}/accounts/clear")
