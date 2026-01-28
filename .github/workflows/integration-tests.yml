@@ -26,6 +26,7 @@ jobs:
       - name: start mongo
         run: |
            docker compose -f mongo.yml up -d
+           sleep 5
       - name: Run integration tests
         run: |
           pytest tests/integration
