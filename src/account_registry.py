@@ -24,5 +24,7 @@ class AccountRegistry:
     def remove_account(self, account):
         if account in self.accounts:
             self.accounts.remove(account)
+    def clear_accounts(self):
+        self.accounts.clear()
 
     

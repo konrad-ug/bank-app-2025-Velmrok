@@ -1,6 +1,6 @@
 from src.personal_account import PersonalAccount
 from src.company_account import CompanyAccount
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 from datetime import date
 import pytest
 
